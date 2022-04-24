@@ -1,3 +1,4 @@
+1
 Hadoop mrJob sentiment Analysis
 cluster:
     1 namenode + 3 workers
@@ -36,7 +37,7 @@ notes:
 
 
 --------------------------------------------------------------------------------------------
-
+2
 Hadoop mrJob sentiment Analysis
 cluster:
     1 namenode + 3 workers
@@ -74,6 +75,7 @@ notes:
     python len() and sum() commands used for calculating average
 
 --------------------------------------------------------------------- 
+3
 Hadoop mrJob sentiment Analysis
 cluster:
     1 namenode + 3 workers
@@ -104,11 +106,25 @@ Signals delivered: 0
 Page size (bytes): 4096
 Exit status: 0
 notes:
-    cleaning technic re lib, python for iteration plus string.isalpha() built-in function
+    cleaning technic python for iteration plus string.isalpha() built-in function
     AFFINN word weight dictionary used in python dict
     tokenized comments are stored in python dictionary
     statistics.mean() commands used for calculating average
     
 -----------------------------------------------------------------------------------------
 
+pySpark
+    cleaning technic python for iteration plus string.isalpha() built-in function
+    AFFINN word weight dictionary used in python dict
+    tokenized comments are stored in python dictionary
+    python standard operators used for calculating average
+elapsed time:
+    89:36
 
+------------------------------------------------------------------------------------------
+pySpark
+    cleaning technic python for iteration plus string.isalpha() built-in function
+    python textblob library is used for sentiment analysis
+    python standard operators used for calculating average
+elapsed time:
+    33:19
