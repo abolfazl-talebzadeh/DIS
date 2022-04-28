@@ -1,7 +1,9 @@
-
 from time import time
+import csv
+import re
+import statistics
 
-df = spark.read.csv("hdfs://group2:9000/dis_materials/sample.tsv",header = 'true', sep = "\t")
+dataRdd = sc.textFile("hdfs://group2:9000/dis_materials/1.tsv")
 
 def mapper(line):
     import csv
@@ -21,7 +23,7 @@ def mapper(line):
     if isinstance(lineList[0],str)!=True or isinstance(lineList[1],str)!=True:
         return "header",(0,0)
     date = lineList[14][0:7]
-    cleanText = ''.join(w.lower() for w in lineList[13] if w.isalpha() or w == " ")
+    cleanText = re.sub(r"[0-9(-_:;,.!?@#$%^&*)']",'',lineList[13].lower())
     textList = cleanText.split(" ")
     for i in textList:
         if i in r.keys():
@@ -48,14 +50,8 @@ def m(x):
 
 startTime = time()
 
-a = df.select("review_body","review_date")
-
-b = a.rdd.map(mapper).reduceByKey(lambda e1,e2: (e1[0]+e2[0],e1[1]+e2[1]))
-
-c = b.map(m)
-
-d = c.toDF()
-
+a = dataRdd.map(mapper).reduceByKey(lambda e1,e2: (e1[0]+e2[0],e1[1]+e2[1])).map(m)
+a.collect()
 elapsedTime = time()-startTime
 
 print(f"Elapsed time = {int(elapsedTime//60)}:{int(elapsedTime%60)}")

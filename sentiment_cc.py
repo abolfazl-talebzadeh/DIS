@@ -17,6 +17,8 @@ class MRCountSum(MRJob):
         wordDic={}
         line = line.strip() # remove leading and trailing whitespace
         lineList = line.split("\t")
+        if isinstance(lineList[13],str)!=True or isinstance(lineList[14],str)!=True:
+            return "invalid",0
         country = lineList[13]
         date = lineList[14]
         date = date[0:7]
