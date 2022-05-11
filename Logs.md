@@ -150,18 +150,3 @@ notes:
     
 -----------------------------------------------------------------------------------------
 
-pySpark
-    cleaning technic python for iteration plus string.isalpha() built-in function
-    AFFINN word weight dictionary used in python dict
-    tokenized comments are stored in python dictionary
-    python standard operators used for calculating average
-elapsed time:
-    89:36
-
-------------------------------------------------------------------------------------------
-pySpark
-    cleaning technic python for iteration plus string.isalpha() built-in function
-    python textblob library is used for sentiment analysis
-    python standard operators used for calculating average
-elapsed time:
-    33:19
