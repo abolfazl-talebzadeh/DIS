@@ -1,9 +1,19 @@
+from pyspark.sql import SparkSession
+from pyspark import SparkContext
 from time import time
 import csv
 import re
 
-dataRdd = sc.textFile("hdfs://group2:9000/dis_materials/1.tsv")
+appName = "MyApp"
 
+# spark = SparkSession.builder \
+#     .appName(appName) \
+#     .getOrCreate()
+
+sc = SparkContext()
+
+dataRdd = sc.textFile("hdfs://namenode:9000/dis_materials/1.tsv")
+#data = spark.read.csv("hdfs://namenode:9000/dis_materials/1.tsv",header = 'true', sep = "\t")
 def mapper(line):
     r = {}
     counter = 0
@@ -43,12 +53,9 @@ def m(x):
         return x[0],0
     return x[0],x[1][0]/x[1][1] 
 
+#a= data.take(5)
+#print(a)
+a = dataRdd.map(mapper).reduceByKey(lambda e1,e2: (e1[0]+e2[0],e1[1]+e2[1])).map(m).collect()
 
-startTime = time()
-
-a = dataRdd.map(mapper).reduceByKey(lambda e1,e2: (e1[0]+e2[0],e1[1]+e2[1])).map(m)
-a.collect()
-elapsedTime = time()-startTime
-
-print(f"Elapsed time = {int(elapsedTime//60)}:{int(elapsedTime%60)}")
+#print(f"Elapsed time = {int(elapsedTime//60)}:{int(elapsedTime%60)}")
 
