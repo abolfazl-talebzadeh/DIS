@@ -3,7 +3,7 @@ from mrjob.job import MRJob
 class MRCountSum(MRJob):
 
     def mapper(self, _, line):
-        line = line.strip() # remove leading and trailing whitespace
+        line = line.strip() 
         lineList = line.split("\t")
         country = lineList[0]
         yield country, 1

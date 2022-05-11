@@ -51,4 +51,3 @@ a.collect()
 elapsedTime = time()-startTime
 
 print(f"Elapsed time = {int(elapsedTime//60)}:{int(elapsedTime%60)}")
-
